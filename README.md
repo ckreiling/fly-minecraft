@@ -33,6 +33,12 @@ fly deploy -a minecraft-$UNIQUE_NAME \
 Shortly after roll-out, you should be able to connect directly to
 `minecraft-$UNIQUE_NAME.fly.dev` via the Minecraft client.
 
+You can monitor the rollout in the Fly UI:
+
+```bash
+open https://fly.io/apps/minecraft-$UNIQUE_NAME/monitoring
+```
+
 ## Destruction
 
 Destroying the Minecraft server is easy:
