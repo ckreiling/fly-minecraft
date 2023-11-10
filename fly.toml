@@ -1,0 +1,48 @@
+app = "minecraft-lb6n"
+primary_region = "bos"
+
+kill_signal = "SIGTERM"
+kill_timeout = 120
+
+[build]
+  dockerfile = "Dockerfile"
+
+[deploy]
+  wait_timeout = "5m"
+
+[env]
+  EULA = "TRUE"
+  ENABLE_AUTOSTOP         = "TRUE"
+  AUTOSTOP_TIMEOUT_EST    = 120
+  AUTOSTOP_TIMEOUT_INIT   = 120
+  MEMORY                  = "3G"
+  AUTOSTOP_PKILL_USE_SUDO = "TRUE"
+  # message of the day, displayed on the server
+  MOTD = "Let's craft, baby!"
+  # comma-separated list of usernames or uuids for allowed players
+  WHITELIST = "ckreiling"
+  # sync WHITELIST env var with whitelist file on the server
+  EXISTING_WHITELIST_FILE = "SYNCHRONIZE"
+  # similar to the WHITELIST, but for Ops/Administrators
+  OPS = "ckreiling"
+  EXISTING_OPS_FILE = "SYNCHRONIZE"
+
+[mounts]
+  source = "minecraft_data"
+  destination = "/data"
+
+[[services]]
+  internal_port = 25565
+  protocol = "tcp"
+  # Make sure Fly knows not to restart the machine when it exits gracefully
+  min_machines_running = 0
+  max_machines_running = 1
+  # since Minecraft manages autostop, we tell Fly to not stop the machine
+  auto_stop_machines = false
+  auto_start_machines = true
+  [[services.ports]]
+    port = "25565"
+  [[services.tcp_checks]]
+    grace_period = "10s"
+    interval = "5s"
+    timeout = "3s"
