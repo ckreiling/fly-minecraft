@@ -19,7 +19,7 @@ First decide on a globally unique Fly app name, and assign it to a an env var.
 Then create necessary resources in Fly with the script below.
 
 When running the `fly deploy` command below, be sure to follow the prompt to
-allocate dedicated ipv4 and ipv6 addresses.
+setup the Volume, and allocate dedicated ipv4 and ipv6 addresses.
 
 ```bash
 export UNIQUE_NAME="ckreiling" # replace with your unique name
