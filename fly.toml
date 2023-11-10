@@ -20,11 +20,11 @@ kill_timeout = 120
   # message of the day, displayed on the server
   MOTD = "Let's craft, baby!"
   # comma-separated list of usernames or uuids for allowed players
-  WHITELIST = "ckreiling"
+  WHITELIST = "ckreiling,deploytoprod"
   # sync WHITELIST env var with whitelist file on the server
   EXISTING_WHITELIST_FILE = "SYNCHRONIZE"
   # similar to the WHITELIST, but for Ops/Administrators
-  OPS = "ckreiling"
+  OPS = "ckreiling,deploytoprod"
   EXISTING_OPS_FILE = "SYNCHRONIZE"
 
 [mounts]

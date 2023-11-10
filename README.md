@@ -22,21 +22,22 @@ When running the `fly deploy` command below, be sure to follow the prompt to
 setup the Volume, and allocate dedicated ipv4 and ipv6 addresses.
 
 ```bash
-export UNIQUE_NAME="ckreiling" # replace with your unique name
-fly apps create minecraft-$UNIQUE_NAME
-fly volumes create -a minecraft-$UNIQUE_NAME minecraft_data
-fly deploy -a minecraft-$UNIQUE_NAME \
+# The FLY_APP env var is used by the `fly` CLI
+export FLY_APP="minecraft-ckreiling" # replace with your unique name
+fly apps create $FLY_APP
+fly volumes create minecraft_data
+fly deploy \
   --vm-size shared-cpu-4x \
   --vm-memory 4096
 ```
 
 Shortly after roll-out, you should be able to connect directly to
-`minecraft-$UNIQUE_NAME.fly.dev` via the Minecraft client.
+`$FLY_APP.fly.dev` via the Minecraft client.
 
 You can monitor the rollout in the Fly UI:
 
 ```bash
-open https://fly.io/apps/minecraft-$UNIQUE_NAME/monitoring
+open https://fly.io/apps/$FLY_APP/monitoring
 ```
 
 ## Destruction
